@@ -9,27 +9,23 @@
     <Form @submit="addTodo">
       <div class="card-body">
         <div class="form-group">
-          <Field type="number" class="form-control" placeholder="Enter id" v-model="todolist.id" name="id"/>
-<!--          <ErrorMessage class="text-red" name="id" />-->
-        </div>
-        <div class="form-group">
-          <Field type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title"/>
+          <Field type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title" :rules="validateTitle"/>
           <ErrorMessage class="text-red" name="title" />
         </div>
         <div class="form-group">
           <Field type="text" class="form-control" placeholder="Enter task" v-model="todolist.completed"
-                 name="completed"/>
+                 name="completed" :rules="validateTitle"/>
           <ErrorMessage class="text-red" name="completed" />
         </div>
       </div>
       <!-- /.card-body -->
 
-
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" @click="addTodo">Add Todo</button>
+      </div>
 
     </Form>
-    <div class="card-footer">
-      <button type="submit" class="btn btn-primary" @click="addTodo">Add Todo</button>
-    </div>
+
   </div >
 
 
@@ -53,8 +49,20 @@ export default {
   },
   components: {Header, Form, Field, ErrorMessage},
   methods: {
+    // onSubmit(values) {
+    //   console.log(values, null, 2);
+    // },
+    validateTitle(value) {
+      // if the field is empty
+      if (!value) {
+        return 'This field is required';
+      }
+      else{
+        return  true
+      }
+    },
      addTodo() {
-      if (this.title === '' || this.completed === '') {
+      if (this.todolist.title === '' || this.todolist.completed === '') {
         return false
       } else {
         this.loading = true;
@@ -69,16 +77,17 @@ export default {
         // }
         this.$swal({
           icon: 'success',
-          title: 'Success...',
+          title: 'Todo Added',
           text: this.res,
-          timer: 1500
+          timer: 2500
         });
         this.$router.push('/homepage')
         // console.warn("result", result)
 
       }
     }
-  }
+  },
+
 }
 </script>
 

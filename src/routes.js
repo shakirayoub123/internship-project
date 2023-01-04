@@ -3,6 +3,7 @@ import homePage from "./components/HomePage.vue";
 
 import updateTodo from "@/components/updateTodo.vue";
 import addTodo from "@/components/addTodo.vue";
+import notFound from "@/components/notFound.vue";
 
 const routes = [
     {
@@ -20,6 +21,11 @@ const routes = [
         name: 'updateTodo',
         path: '/updateTodo/:id',
         component: updateTodo,
+    },
+    {
+        name: 'notfound',
+        path:'/:notFound(.*)',
+        component: notFound
     }
 ]
 const router = createRouter({

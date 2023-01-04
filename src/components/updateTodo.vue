@@ -6,9 +6,9 @@
     </div>
     <form>
       <div class="card-body">
-        <div class="form-group">
-          <input type="number" class="form-control" placeholder="Enter id" v-model="todolist.id" name="id">
-        </div>
+<!--        <div class="form-group">-->
+<!--          <input type="number" class="form-control" placeholder="Enter id" v-model="todolist.id" name="id">-->
+<!--        </div>-->
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title">
         </div>

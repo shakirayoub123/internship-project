@@ -23,17 +23,21 @@
     "sweetalert": "^2.1.2",
     "vee-validate": "^4.7.3",
     "vue": "^3.2.45",
+    "vue-bootstrap-pagination": "^2.10.3",
+    "vue-pagination-2": "^3.1.0",
     "vue-router": "^4.0.13",
-    "vue-sweetalert2": "^5.0.5"
+    "vue-sweetalert2": "^5.0.5",
+    "vue-validate": "^1.0.1",
+    "vuejs-paginate": "^2.1.0",
+    "vuejs-paginate-next": "^1.0.2",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.20.0"
   },
   "eslintConfig": {
     "root": true,
@@ -53,5 +57,8 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "rules": {
+    "no-console": false
+  }
 }
