@@ -2,8 +2,8 @@
   "todolist": [
     {
       "id": 1,
-      "title": "a new todo is here",
-      "completed": true
+      "title": "todo list added",
+      "completed": false
     },
     {
       "id": 2,
@@ -121,39 +121,9 @@
       "completed": false
     },
     {
-      "id": 25,
-      "title": "voluptas quo tenetur perspiciatis explicabo natus",
-      "completed": true
-    },
-    {
-      "id": 26,
-      "title": "aliquam aut quasi",
-      "completed": true
-    },
-    {
-      "id": 27,
-      "title": "veritatis pariatur delectus",
-      "completed": true
-    },
-    {
-      "id": 28,
-      "title": "nesciunt totam sit blanditiis sit",
-      "completed": false
-    },
-    {
-      "id": 29,
-      "title": "laborum aut in quam",
-      "completed": false
-    },
-    {
-      "id": 30,
-      "title": "hy",
-      "completed": "hy"
-    },
-    {
-      "id": 31,
-      "title": "hey",
-      "completed": "false"
+      "title": "added new todo",
+      "completed": false,
+      "id": 25
     }
   ]
 }

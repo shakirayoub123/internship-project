@@ -6,26 +6,12 @@
     <div class="card-header">
       <h3 class="card-title">Add Todo</h3>
     </div>
-    <Form @submit="addTodo">
       <div class="card-body">
-        <div class="form-group">
-          <Field type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title" :rules="validateTitle"/>
-          <ErrorMessage class="text-red" name="title" />
-        </div>
-        <div class="form-group">
-          <Field type="text" class="form-control" placeholder="Enter task" v-model="todolist.completed"
-                 name="completed" :rules="validateTitle"/>
-          <ErrorMessage class="text-red" name="completed" />
-        </div>
+    <form @submit="onSubmit">
+      <input type="text" class="form-control " placeholder="Enter todo" v-model="title" required/>
+      <input type="submit" class="btn btn-primary mt-3" value="Add Todo">
+    </form>
       </div>
-      <!-- /.card-body -->
-
-      <div class="card-footer">
-        <button type="submit" class="btn btn-primary" @click="addTodo">Add Todo</button>
-      </div>
-
-    </Form>
-
   </div >
 
 
@@ -35,59 +21,34 @@
 import axios from "axios";
 import Header from "@/components/Header.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
+import {mapActions} from "vuex";
 
 export default {
   data() {
     return {
-      todolist: {
-        id: null,
-        title: '',
-        completed: '',
-        loading: false
-      }
+      title: '',
+      // loading: false
     }
   },
   components: {Header, Form, Field, ErrorMessage},
   methods: {
-    // onSubmit(values) {
-    //   console.log(values, null, 2);
-    // },
-    validateTitle(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required';
-      }
-      else{
-        return  true
-      }
-    },
-     addTodo() {
-      if (this.todolist.title === '' || this.todolist.completed === '') {
-        return false
-      } else {
-        this.loading = true;
-         axios.post('http://localhost:3000/todolist/', {
-          id: this.todolist.id,
-          title: this.todolist.title,
-          completed: this.todolist.completed
-        });
-        // if (result.status == 201) {
-        //   this.$router.push('/homepage')
-        //
-        // }
-        this.$swal({
-          icon: 'success',
-          title: 'Todo Added',
-          text: this.res,
-          timer: 2500
-        });
-        this.$router.push('/homepage')
-        // console.warn("result", result)
+    ...mapActions(["addTodo"]),
+    onSubmit(event) {
+      event.preventDefault();
+      this.addTodo(this.title);
+      this.title = ''
 
-      }
+
+      this.$swal({
+        icon: 'success',
+        title: 'Todo Added',
+        text: this.res,
+        timer: 2500
+      });
+      this.$router.push('/homepage')
+      // console.warn("result", result)
     }
-  },
-
+},
 }
 </script>
 

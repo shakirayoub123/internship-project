@@ -6,16 +6,10 @@
     </div>
     <form>
       <div class="card-body">
-<!--        <div class="form-group">-->
-<!--          <input type="number" class="form-control" placeholder="Enter id" v-model="todolist.id" name="id">-->
-<!--        </div>-->
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title">
         </div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter task" v-model="todolist.completed"
-                 name="completed">
-        </div>
+
       </div>
       <!-- /.card-body -->
 
@@ -29,32 +23,28 @@
 <script>
 import axios from "axios";
 import Header from "@/components/Header.vue";
-
+import {mapActions} from "vuex";
 
 export default {
   components: {Header},
   data(){
     return{
       todolist: {
-        id: '',
         title: '',
-        completed: '',
-        url : 'http://localhost:3000/todolist',
       }
     }
   },
   methods: {
+    // ...mapActions(['updateTodo']),
     async updateTodo() {
         const result=await axios.put('http://localhost:3000/todolist/' + this.$route.params.id,{
           id:this.todolist.id,
           title:this.todolist.title,
-          completed: this.todolist.completed
+          completed:false
+
         });
         console.log(result)
-        // if(result.status==201)
-        // {
-        //   this.$router.push('/homepage')
-        // }
+
 
       this.$swal({
         icon: 'success',
@@ -69,8 +59,7 @@ export default {
     },
     async mounted() {
       const result = await axios.get('http://localhost:3000/todolist/' + this.$route.params.id)
-      // console.warn(this.$route.params.id)
-      //console.warn(result.data);
+
       this.todolist = result.data
     }
   }

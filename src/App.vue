@@ -11,6 +11,7 @@
 
         <section class="content">
           <div class="container-fluid">
+            <filter-todos></filter-todos>
             <router-view></router-view>
           </div>
         </section>
@@ -36,11 +37,13 @@ import Navbar from "./dashboard/Navbar.vue";
 import Sidebar from "./dashboard/Sidebar.vue";
 import Footer from "./dashboard/Footer.vue";
 import ControlSidebar from "./dashboard/ControlSidebar.vue"
+import FilterTodos from "@/components/Filter.vue";
 
 
 export default {
   name: "App",
   components: {
+    FilterTodos,
     Preloader,
     ContentHeader,
 
