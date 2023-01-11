@@ -52,6 +52,10 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VuePaginate from "vue-pagination-2";
 import store from './store'
+import JwPagination from 'jw-vue-pagination';
+
+
+
 
 
 
@@ -60,6 +64,7 @@ dom.watch()
 
 createApp(App).component("font-awesome-icon", FontAwesomeIcon)
     .use(routes)
+    .use(JwPagination)
     .use(VueSweetalert2)
     .use(store)
     .use(VuePaginate)

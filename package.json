@@ -18,6 +18,7 @@
     "core-js": "^3.6.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
+    "jw-vue-pagination": "^1.0.3",
     "router": "^2.0.0-beta.1",
     "routes": "^2.1.0",
     "sweetalert": "^2.1.2",

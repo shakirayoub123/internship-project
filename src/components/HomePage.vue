@@ -10,14 +10,12 @@
       <td>Actions</td>
       <td>Delete</td>
     </tr>
-    <tr v-for="todo in allTodos"
-        :key="todo.id"
-        @dblclick="onDblClick(todo)"
-        class="todo"
-        v-bind:class="{'is-completed':todo.completed}"
-    >
+    <tr v-for="todo in  allTodos" :key="todo.id"
+        :class="{ completed: todo.completed }">
       <td>{{ todo.id }}</td>
-      <td>{{ todo.title }}</td>
+      <td><input type="checkbox"  v-model="todo.completed">
+      {{todo.title}}
+      </td>
       <td>{{ todo.completed }}</td>
       <td id="update">
         <router-link :to="'/updateTodo/'+todo.id">Edit</router-link>
@@ -31,6 +29,7 @@
     <button class="btn btn-outline-primary ml-1" @click="nextPage" :disabled="currentPage === totalPages">Next</button>
   </div>
 
+
 </template>
 
 <script>
@@ -43,7 +42,7 @@ export default {
 
   data() {
     return {
-
+      items:[],
       currentPage: 1,
       perPage: 5,
       totalPages: 0,
@@ -54,15 +53,7 @@ export default {
     Header,
   },
   methods: {
-    ...mapActions(['fetchTodos', "deleteTodo", "updateTodo"]),
-    onDblClick(todo){
-      const updatedTodo={
-        id:todo.id,
-        title:todo.title,
-        computed: !todo.completed
-      }
-      this.updateTodo(updatedTodo)
-    },
+    ...mapActions(['fetchTodos', "deleteTodo"]),
     prevPage() {
       if (this.currentPage > 1) this.currentPage--
     },
@@ -73,15 +64,15 @@ export default {
 
   computed: mapGetters(['allTodos']),
 
+  paginatedItems() {
+    //   pagination
+    this.totalPages = Math.ceil(this.items.length / this.perPage)
+    return this.items.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
+
+
+  },
   created() {
     this.fetchTodos()
-  },
-  newtodolist() {
-    //   pagination
-    this.totalPages = Math.ceil(this.todolist.length / this.perPage)
-    return this.todolist.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
-
-
   },
 }
 </script>
@@ -94,6 +85,9 @@ export default {
 }
 .completed{
   text-decoration: line-through;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  border-color: #ddd;
 }
 
 #update :hover {
