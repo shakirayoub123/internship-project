@@ -13,8 +13,8 @@
     <tr v-for="todo in  allTodos" :key="todo.id"
         :class="{ completed: todo.completed }">
       <td>{{ todo.id }}</td>
-      <td><input type="checkbox"  v-model="todo.completed">
-      {{todo.title}}
+      <td><input type="checkbox" v-model="todo.completed">
+        {{ todo.title }}
       </td>
       <td>{{ todo.completed }}</td>
       <td id="update">
@@ -23,7 +23,7 @@
       <button class="btn btn-danger mt-2" @click="deleteTodo(todo.id)">Delete</button>
     </tr>
   </table>
-  <!--  pagination-->
+<!--    pagination-->
   <div class="pagination">
     <button class="btn btn-outline-primary" @click="prevPage" :disabled="currentPage === 1">Prev</button>
     <button class="btn btn-outline-primary ml-1" @click="nextPage" :disabled="currentPage === totalPages">Next</button>
@@ -42,7 +42,7 @@ export default {
 
   data() {
     return {
-      items:[],
+      items: [],
       currentPage: 1,
       perPage: 5,
       totalPages: 0,
@@ -69,7 +69,6 @@ export default {
     this.totalPages = Math.ceil(this.items.length / this.perPage)
     return this.items.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
 
-
   },
   created() {
     this.fetchTodos()
@@ -83,11 +82,12 @@ export default {
   text-decoration: none;
   color: orangered;
 }
-.completed{
-  text-decoration: line-through;
+
+.completed {
+  /*text-decoration: line-through;*/
   font-weight: bold;
-  background-color: #f8f9fa;
-  border-color: #ddd;
+  background-color: antiquewhite;
+  /*border-color: #ddd;*/
 }
 
 #update :hover {

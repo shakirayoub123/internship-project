@@ -3,6 +3,7 @@
 Filter Todos:
   </div>
   <select v-on:change="filterTodos($event)">
+    <option>select</option>
     <option value="5">5</option>
     <option value="10">10</option>
     <option value="20">20</option>
@@ -17,8 +18,14 @@ import {mapActions} from "vuex";
 
 export default {
   name:'FilterTodos',
+  data(){
+    return{
+
+    }
+  },
   methods:{
     ...mapActions(['filterTodos'])
+
   }
 
 
