@@ -11,7 +11,6 @@
 
         <section class="content">
           <div class="container-fluid">
-<!--            <filter-todos></filter-todos>-->
             <router-view></router-view>
             <filter-todos></filter-todos>
           </div>

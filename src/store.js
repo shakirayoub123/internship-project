@@ -28,11 +28,11 @@ const store = createStore({
                 {title:title, completed: false})
             commit('addTodo', result.data)
         },
-        async filterTodos({commit},event){
-            const limit = parseInt(event.target.options[event.target.options.selectedIndex].innerText);
-            const response= await axios.get(`http://localhost:3000/todolist?_limit=${limit}`);
-            commit ('setTodos', response.data)
-        }
+        // async filterTodos({commit},event){
+        //     const limit = parseInt(event.target.options[event.target.options.selectedIndex].innerText);
+        //     const response= await axios.get(`http://localhost:3000/todolist?_limit=${limit}`);
+        //     commit ('setTodos', response.data)
+        // }
     },
     mutations: {
         setTodos: (state, todos) => (state.todos = todos),
