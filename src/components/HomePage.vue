@@ -13,8 +13,8 @@
     <tr v-for="todo in  displayedPosts" :key="todo.id"
         :class="{ completed: todo.completed }">
       <td>{{ todo.id }}</td>
-      <td><input type="checkbox"  v-model="todo.completed">
-        {{todo.title}}
+      <td><input type="checkbox" v-model="todo.completed">
+        {{ todo.title }}
       </td>
       <td>{{ todo.completed }}</td>
       <td id="update">
@@ -26,8 +26,8 @@
   <!--  pagination-->
   <div class="pagination">
 
-    <button  class="btn btn-outline-primary"  v-if="page != 1" @click="page--"> Prev</button>
-    <button  @click="page++" v-if="page < pages.length" class="btn btn-outline-primary ml-2"> Next </button>
+    <button class="btn btn-outline-primary" v-if="page != 1" @click="page--"> Prev</button>
+    <button @click="page++" v-if="page < pages.length" class="btn btn-outline-primary ml-2"> Next</button>
 
   </div>
 
@@ -56,8 +56,8 @@ export default {
   components: {
     Header,
   },
-  methods:{
-  ...mapActions(['fetchTodos',"deleteTodo"]),
+  methods: {
+    ...mapActions(['fetchTodos', "deleteTodo"]),
 
     setPages() {
 
@@ -78,18 +78,21 @@ export default {
       let to = (page * perPage);
 
       return this.todos.slice(from, to);
-    },
-    searchTodos(){
-    return this.todos.filter((todo) => {
-      return todo.title.match(this.search)
-    })
     }
+    // searchTodos(){
+    // return this.todos.filter((todo) => {
+    //   return todo.title.match(this.search)
+    // })
+    // }
+    // },
   },
 
   computed: {
     displayedPosts() {
       return this.paginate();
-      return  this.searchTodos()
+      // return this.todos.filter((todo) => {
+      //   return todo.title.match(this.search)
+      // })
     },
     todos() {
       return this.$store.state['todos']
@@ -114,18 +117,20 @@ export default {
   text-decoration: none;
   color: orangered;
 }
+
 .completed {
-     /*text-decoration: line-through;*/
-     font-weight: bold;
-     background-color: antiquewhite;
-    border-color: #ddd;
-    }
+  /*text-decoration: line-through;*/
+  font-weight: bold;
+  background-color: antiquewhite;
+  border-color: #ddd;
+}
 
 #update :hover {
   background-color: dodgerblue;
   color: white;
 }
-td input{
+
+td input {
   margin-right: 5px;
 }
 </style>
