@@ -1,6 +1,6 @@
 <template>
   <Header/>
-  <input type="text" class="form-control mt-4" v-model="search" placeholder="search here..">
+<!--  <input type="text" class="form-control mt-4" v-model="search" placeholder="search here..">-->
   <table class="table mt-4">
 
     <tr class="table-primary font-weight-bold">
@@ -18,9 +18,10 @@
       </td>
       <td>{{ todo.completed }}</td>
       <td id="update">
-        <router-link :to="'/updateTodo/'+todo.id">Edit</router-link>
+        <router-link :to="'/updateTodo/'+todo.id"><button class="btn btn-secondary">Edit<i class="fa-sharp fa-solid fa-pen"></i></button></router-link>
       </td>
-      <button class="btn btn-danger mt-2" @click="deleteTodo(todo.id)">Delete</button>
+      <button class="btn btn-danger mt-2" @click="deleteTodo(todo.id)">Delete<i class="fa-solid fa-trash"></i></button>
+
     </tr>
   </table>
   <!--  pagination-->
@@ -113,10 +114,10 @@ export default {
 
 <style scoped>
 
-#update a {
-  text-decoration: none;
-  color: orangered;
-}
+/*#update a {*/
+/*  text-decoration: none;*/
+/*  color: orangered;*/
+/*}*/
 
 .completed {
   /*text-decoration: line-through;*/
@@ -125,12 +126,15 @@ export default {
   border-color: #ddd;
 }
 
-#update :hover {
-  background-color: dodgerblue;
-  color: white;
-}
+/*#update :hover {*/
+/*  background-color: dodgerblue;*/
+/*  color: white;*/
+/*}*/
 
 td input {
   margin-right: 5px;
+}
+i{
+  margin-left: 6px;
 }
 </style>
