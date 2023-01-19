@@ -38,7 +38,7 @@
 <script>
 import axios from "axios";
 import Header from "@/components/Header.vue";
-import {mapGetters, mapActions} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: 'HomePage',

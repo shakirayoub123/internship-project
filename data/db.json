@@ -22,7 +22,7 @@
     },
     {
       "id": 5,
-      "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+      "title": "laboriosam mollitia et enim quasi ",
       "completed": false
     },
     {
@@ -499,11 +499,6 @@
       "id": 100,
       "title": "excepturi a et neque qui expedita vel voluptate",
       "completed": false
-    },
-    {
-      "title": "Last todo is here",
-      "completed": false,
-      "id": 101
     }
   ]
 }

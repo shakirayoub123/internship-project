@@ -1,20 +1,16 @@
 <template>
   <Header/>
-
-
   <div class="card card-primary mt-4">
     <div class="card-header">
       <h3 class="card-title">Add Todo</h3>
     </div>
       <div class="card-body">
     <form @submit="onSubmit">
-      <input type="text" class="form-control " placeholder="Enter todo" v-model="title" required/>
+      <input type="text" class="form-control " placeholder="Enter todo" v-model="title" data-test="todo" required/>
       <input type="submit" class="btn btn-primary mt-3" value="Add Todo">
     </form>
       </div>
   </div >
-
-
 </template>
 
 <script>
