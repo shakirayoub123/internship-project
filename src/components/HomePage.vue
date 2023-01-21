@@ -11,7 +11,7 @@
       <td>Delete</td>
     </tr>
     <tr v-for="todo in  displayedPosts" :key="todo.id"
-        :class="{ completed: todo.completed }">
+        :class="{ completed: todo.completed }" data-test="displayedPosts">
       <td>{{ todo.id }}</td>
       <td><input type="checkbox" v-model="todo.completed">
         {{ todo.title }}
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import Header from "@/components/Header.vue";
 import {mapActions} from "vuex";
 
@@ -91,9 +91,6 @@ export default {
   computed: {
     displayedPosts() {
       return this.paginate();
-      // return this.todos.filter((todo) => {
-      //   return todo.title.match(this.search)
-      // })
     },
     todos() {
       return this.$store.state['todos']
@@ -106,31 +103,19 @@ export default {
   },
 
   created() {
-    // this.$store.dispatch('fetchTodos');
+    this.$store.dispatch('fetchTodos');
     this.fetchTodos()
   },
 }
 </script>
 
 <style scoped>
-
-/*#update a {*/
-/*  text-decoration: none;*/
-/*  color: orangered;*/
-/*}*/
-
 .completed {
   /*text-decoration: line-through;*/
   font-weight: bold;
   background-color: antiquewhite;
   border-color: #ddd;
 }
-
-/*#update :hover {*/
-/*  background-color: dodgerblue;*/
-/*  color: white;*/
-/*}*/
-
 td input {
   margin-right: 5px;
 }

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import Header from "@/components/Header.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import {mapActions} from "vuex";
