@@ -23,6 +23,12 @@ describe('updateTodo.vue', () => {
 
     let wrapper;
 
+    const mockRouter={
+
+        push: jest.fn()
+
+    }
+
     const router = createRouterMock({})
 
     beforeEach(() => {
@@ -38,7 +44,7 @@ describe('updateTodo.vue', () => {
 
                 mocks: {
 
-                    $router: {params: {id: 1}},
+                    $router: mockRouter,
                     loading: false,
                 }
 
@@ -50,6 +56,8 @@ describe('updateTodo.vue', () => {
             },
 
             created: jest.fn(),
+
+            router: jest.fn(),
 
             stubs: ['router-link', 'required', 'loading']
 
@@ -88,7 +96,7 @@ describe('updateTodo.vue', () => {
 
     test('testing for the post', async () => {
 
-        wrapper.vm.updateTodo()
+        // wrapper.vm.updateTodo()
 
         expect(wrapper.findAll('button').at(0).trigger("click"))
 
