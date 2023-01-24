@@ -5,9 +5,11 @@
       <h3 class="card-title">Add Todo</h3>
     </div>
       <div class="card-body">
-    <form @submit="onSubmit">
+    <form >
       <input type="text" class="form-control " placeholder="Enter todo" v-model="title" data-test="todo" required/>
-      <input type="submit" class="btn btn-primary mt-3" value="Add Todo">
+      <input type="submit" data-test="todo" class="btn btn-primary mt-3" value="Add Todo">
+      <input type="submit" data-test="todo" @click= "cancelFunc" class="btn btn-secondary mt-3 float-right" value="Cancel">
+
     </form>
       </div>
   </div >
@@ -23,11 +25,14 @@ export default {
   data() {
     return {
       title: '',
-      // loading: false
+      loading: false
     }
   },
   components: {Header, Form, Field, ErrorMessage},
   methods: {
+    cancelFunc(){
+      this.$router.push('/homepage')
+    },
     ...mapActions(["addTodo"]),
     onSubmit(event) {
       event.preventDefault();

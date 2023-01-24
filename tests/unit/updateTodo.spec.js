@@ -136,8 +136,6 @@ describe('updateTodo.vue', () => {
 
     test('testing the input', async () => {
 
-        // const wrapper = mount(updateTodo)
-
         expect(wrapper.findAll('input').length).toEqual(1)
         expect(wrapper.findAll('input').at(0).text()).toMatch('')
 
@@ -147,9 +145,8 @@ describe('updateTodo.vue', () => {
     test('testing the input field', async () => {
         expect(wrapper.findAll('input').length).toEqual(1)
         expect(wrapper.findAll('input').at(0).text()).toMatch('')
-
-
     })
+
     //test case for loader
     test('testCases on `Loader` ', async () => {
         expect(wrapper.vm.loading).toBe(false)
