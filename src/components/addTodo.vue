@@ -5,11 +5,10 @@
       <h3 class="card-title">Add Todo</h3>
     </div>
       <div class="card-body">
-    <form >
+    <form @submit="onSubmit">
       <input type="text" class="form-control " placeholder="Enter todo" v-model="title" data-test="todo" required/>
       <input type="submit" data-test="todo" class="btn btn-primary mt-3" value="Add Todo">
       <input type="submit" data-test="todo" @click= "cancelFunc" class="btn btn-secondary mt-3 float-right" value="Cancel">
-
     </form>
       </div>
   </div >
@@ -38,8 +37,6 @@ export default {
       event.preventDefault();
       this.addTodo(this.title);
       this.title = ''
-
-
       this.$swal({
         icon: 'success',
         title: 'Todo Added',
