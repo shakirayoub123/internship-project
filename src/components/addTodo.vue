@@ -4,20 +4,26 @@
     <div class="card-header">
       <h3 class="card-title">Add Todo</h3>
     </div>
-      <div class="card-body">
-    <form @submit="onSubmit">
-      <input type="text" class="form-control " placeholder="Enter todo" v-model="title" data-test="todo" required/>
-      <input type="submit" data-test="todo" class="btn btn-primary mt-3" value="Add Todo">
-      <input type="submit" data-test="todo" @click= "cancelFunc" class="btn btn-secondary mt-3 float-right" value="Cancel">
-    </form>
-      </div>
-  </div >
+    <div class="card-body">
+      <Form @submit="onSubmit">
+        <!--      <Field type="text" class="Form-control" placeholder="Enter todo" v-model="title" name="title" :rules="validateForm" data-test="todo" />-->
+        <Field type="text" :rules="validateForm" name="title" id="title" data-test="todo"
+               placeholder="Title" v-model="title" class="form-control"/>
+        <ErrorMessage class="text-red mr-2" name="title"/>
+        <br>
+        <input type="submit" data-test="todo" class="btn btn-primary mt-2" value="Add Todo">
+        <input type="submit" data-test="todo" @click="cancelFunc" class="btn btn-secondary mt-2 float-right"
+               value="Cancel">
+      </Form>
+    </div>
+  </div>
+
 </template>
 
 <script>
 // import axios from "axios";
 import Header from "@/components/Header.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import {Form, Field, ErrorMessage} from "vee-validate";
 import {mapActions} from "vuex";
 
 export default {
@@ -29,24 +35,34 @@ export default {
   },
   components: {Header, Form, Field, ErrorMessage},
   methods: {
-    cancelFunc(){
+    cancelFunc() {
       this.$router.push('/homepage')
     },
     ...mapActions(["addTodo"]),
-    onSubmit(event) {
-      event.preventDefault();
+    onSubmit() {
+      // event.preventDefault();
       this.addTodo(this.title);
       this.title = ''
       this.$swal({
         icon: 'success',
         title: 'Todo Added',
-        text: this.res,
-        timer: 2500
       });
       this.$router.push('/homepage')
-      // console.warn("result", result)
+
+    },
+    validateForm(value) {
+
+      if (!value) {
+
+        return 'This field is required';
+
+      } else {
+
+        return title;
+
+      }
     }
-},
+  },
 }
 </script>
 
@@ -61,7 +77,6 @@ export default {
   width: 400px;
   margin: auto;
 }
-
 
 
 h2 {

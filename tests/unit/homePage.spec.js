@@ -23,8 +23,12 @@ import moxios from 'moxios'
 import Header from "@/components/Header.vue";
 import HomePage from "@/components/HomePage.vue";
 import notFound from "@/components/notFound.vue";
-import Footer from "@/dashboard/Footer.vue";
+import axios from "axios";
 import Sidebar from "@/dashboard/Sidebar.vue";
+import {equal} from "assert";
+import {flushPromises} from "@vue/test-utils";
+import store from "@/store";
+import sinon from "sinon";
 import Navbar from "@/dashboard/Navbar.vue";
 
 const {
@@ -69,7 +73,6 @@ describe("HomePage.Vue", () => {
             },
             created: jest.fn(),
 
-            redirectTo: jest.fn(),
 
             global: {
 
@@ -84,12 +87,12 @@ describe("HomePage.Vue", () => {
         })
 
     }
-    test("rendering AdminLte themes", () => {
+    test("rendering AdminLte Sidebar", () => {
         const wrapper = shallowMount(Sidebar)
         expect(wrapper.findComponent(Sidebar).exists()).toBe(true)
 
     })
-    test("rendering AdminLte themes", () => {
+    test("rendering AdminLte Navbar", () => {
         const wrapper = shallowMount(Navbar)
         expect(wrapper.findComponent(Navbar).exists()).toBe(true)
 
@@ -122,16 +125,57 @@ describe("HomePage.Vue", () => {
         expect(wrapper.exists()).toBeTruthy()
 
     })
-    // test('route on buttons',async()=>{
+    test('testing for the getData', async()=> {
+
+        moxios.withMock( ()=> {
+
+            wrapper = sinon.spy()
+
+            axios.get('http://localhost:3000/todolist/').then(wrapper)
+
+            moxios.wait(()=> {
+
+                let request = moxios.requests.mostRecent()
+
+                request.respondWith({
+
+                    status: 200,
+
+                    response: {
+
+                        id: 1,  title: 'title1',
+
+                    }
+
+                })
+
+                    .then(()=> {
+
+                        equal(wrapper.called, true)
+                    })
+
+            })
+
+        })
+
+    })
+    // test('delete `button` functionality',async()=>{
     //
-    //     // wrapper.vm.redirectTo
+    //     const id = 1
     //
-    //     await wrapper.find(".button1").trigger("click")
+    //     wrapper.vm.$deleteTodo()
     //
-    //     expect(mockRouter.push).toHaveBeenCalledTimes(1)
+    //     expect(wrapper.html()).toContain("content")
     //
-    //     expect(mockRouter.push).toHaveBeenCalledWith('/')
+    //     await wrapper.find(".btn").trigger("click")
+    //
+    //     await flushPromises()
+    //
+    //     await expect(wrapper.exists(id)).toBe(true);
+    //
+    //     expect(wrapper.html()).toContain("")
     //
     // })
+
 
 })

@@ -44,30 +44,30 @@ export default {
       this.$router.push('/homepage')
     },
     async updateTodo() {
-      const result = await axios.put('http://localhost:3000/todolist/' + this.$route.params.id, {
-        id: this.todolist.id,
-        title: this.todolist.title,
-        completed: false
+        const result = await axios.put('http://localhost:3000/todolist/' + this.$route.params.id, {
+          id: this.todolist.id,
+          title: this.todolist.title,
+          completed: false
 
-      });
-      // console.log(result)
+        });
+        // console.log(result)
 
-      this.$swal({
-        icon: 'success',
-        title: 'Todo Updated',
-        text: "Todo Updated Succesfully",
-        timer: 1500
-      });
-      this.$router.push('/homepage')
-      // console.warn('updated data', this.todolist)
-    }
-  },
+        this.$swal({
+          icon: 'success',
+          title: 'Todo Updated',
+          text: "Todo Updated Succesfully",
+          timer: 1500
+        });
+        this.$router.push('/homepage')
+        // console.warn('updated data', this.todolist)
+      }
+    },
 
-  async mounted() {
-    const result = await axios.get('http://localhost:3000/todolist/' + this.$route.params.id)
-    this.todolist = result.data
-  },
-}
+    async mounted() {
+      const result = await axios.get('http://localhost:3000/todolist/' + this.$route.params.id)
+      this.todolist = result.data
+    },
+  }
 
 </script>
 

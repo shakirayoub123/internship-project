@@ -134,29 +134,19 @@ describe('updateTodo.vue', () => {
 
     })
 
-    test('testing the input', async () => {
-
-        expect(wrapper.findAll('input').length).toEqual(1)
-        expect(wrapper.findAll('input').at(0).text()).toMatch('')
-
-
-    })
+    // test('testing the input', async () => {
+    //
+    //     expect(wrapper.findAll('input').length).toEqual(1)
+    //     expect(wrapper.findAll('input').at(0).text()).toMatch('')
+    //
+    //
+    // })
 
     test('testing the input field', async () => {
         expect(wrapper.findAll('input').length).toEqual(1)
         expect(wrapper.findAll('input').at(0).text()).toMatch('')
     })
 
-    //test case for loader
-    test('testCases on `Loader` ', async () => {
-        expect(wrapper.vm.loading).toBe(false)
-
-        expect(wrapper.findAll('input').at(0).trigger('click'))
-
-        wrapper.vm.loading = true
-
-        expect(wrapper.vm.loading).toBe(true)
-    })
     test('testing the button ',async()=>{
         expect(wrapper.findAll('button').length).toEqual(2)
         expect(wrapper.findAll('button').at(0).text()).toMatch('Cancel')
@@ -164,12 +154,9 @@ describe('updateTodo.vue', () => {
 
     })
     test('post id fetching ', async () => {
-        // wrapper.vm.mounted()
         moxios.withMock(() => {
 
             wrapper = sinon.spy()
-
-            // axios.get('http://localhost:3000/todolist/').then(wrapper)
 
             moxios.wait(() => {
 

@@ -49,8 +49,9 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.6",
     "eslint-plugin-vue": "^7.20.0",
-    "jest": "^27.0.5",
-    "moxios": "^0.4.0"
+    "jest": "^27.5.1",
+    "moxios": "^0.4.0",
+    "vuex-mock-store": "^0.0.8"
   },
   "eslintConfig": {
     "root": true,

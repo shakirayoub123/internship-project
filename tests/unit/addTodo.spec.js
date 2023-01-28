@@ -94,9 +94,9 @@
 //
 //
 // })
-
-//done
-
+//
+// done
+//
 import {mount} from '@vue/test-utils'
 import {createStore} from "vuex";
 import addTodo from "@/components/addTodo.vue";
@@ -150,7 +150,7 @@ describe('addTodo routing', () => {
 
             router: jest.fn(),
 
-            stubs: ['router-link', 'required', 'loading']
+            stubs: ['router-link', 'required']
 
         })
 
