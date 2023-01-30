@@ -1,93 +1,68 @@
 <template>
   <Header/>
-
-
   <div class="card card-primary mt-4">
     <div class="card-header">
       <h3 class="card-title">Add Todo</h3>
     </div>
-    <Form @submit="addTodo">
-      <div class="card-body">
-        <div class="form-group">
-          <Field type="text" class="form-control" placeholder="Enter title" v-model="todolist.title" name="title" :rules="validateTitle"/>
-          <ErrorMessage class="text-red" name="title" />
-        </div>
-        <div class="form-group">
-          <Field type="text" class="form-control" placeholder="Enter task" v-model="todolist.completed"
-                 name="completed" :rules="validateTitle"/>
-          <ErrorMessage class="text-red" name="completed" />
-        </div>
-      </div>
-      <!-- /.card-body -->
-
-      <div class="card-footer">
-        <button type="submit" class="btn btn-primary" @click="addTodo">Add Todo</button>
-      </div>
-
-    </Form>
-
-  </div >
-
+    <div class="card-body">
+      <Form @submit="onSubmit">
+        <!--      <Field type="text" class="Form-control" placeholder="Enter todo" v-model="title" name="title" :rules="validateForm" data-test="todo" />-->
+        <Field type="text" :rules="validateForm" name="title" id="title" data-test="todo"
+               placeholder="Title" v-model="title" class="form-control"/>
+        <ErrorMessage class="text-red mr-2" name="title"/>
+        <br>
+        <input type="submit" data-test="todo" class="btn btn-primary mt-2" value="Add Todo">
+        <input type="submit" data-test="todo" @click="cancelFunc" class="btn btn-secondary mt-2 float-right"
+               value="Cancel">
+      </Form>
+    </div>
+  </div>
 
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import Header from "@/components/Header.vue";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import {Form, Field, ErrorMessage} from "vee-validate";
+import {mapActions} from "vuex";
 
 export default {
   data() {
     return {
-      todolist: {
-        id: null,
-        title: '',
-        completed: '',
-        loading: false
-      }
+      title: '',
+      loading: false
     }
   },
   components: {Header, Form, Field, ErrorMessage},
   methods: {
-    // onSubmit(values) {
-    //   console.log(values, null, 2);
-    // },
-    validateTitle(value) {
-      // if the field is empty
-      if (!value) {
-        return 'This field is required';
-      }
-      else{
-        return  true
-      }
+    cancelFunc() {
+      this.$router.push('/homepage')
     },
-     addTodo() {
-      if (this.todolist.title === '' || this.todolist.completed === '') {
-        return false
+    ...mapActions(["addTodo"]),
+    onSubmit() {
+      // event.preventDefault();
+      this.addTodo(this.title);
+      this.title = ''
+      this.$swal({
+        icon: 'success',
+        title: 'Todo Added',
+      });
+      this.$router.push('/homepage')
+
+    },
+    validateForm(value) {
+
+      if (!value) {
+
+        return 'This field is required';
+
       } else {
-        this.loading = true;
-         axios.post('http://localhost:3000/todolist/', {
-          id: this.todolist.id,
-          title: this.todolist.title,
-          completed: this.todolist.completed
-        });
-        // if (result.status == 201) {
-        //   this.$router.push('/homepage')
-        //
-        // }
-        this.$swal({
-          icon: 'success',
-          title: 'Todo Added',
-          text: this.res,
-          timer: 2500
-        });
-        this.$router.push('/homepage')
-        // console.warn("result", result)
+
+        return title;
 
       }
     }
   },
-
 }
 </script>
 
@@ -102,7 +77,6 @@ export default {
   width: 400px;
   margin: auto;
 }
-
 
 
 h2 {

@@ -1,26 +1,27 @@
 <template>
   <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+  <div class="wrapper">
 
-      <Preloader></Preloader>
-      <Navbar></Navbar>
-      <Sidebar></Sidebar>
-      <div class="content-wrapper">
-        
-        <ContentHeader></ContentHeader>
+    <Preloader></Preloader>
+    <Navbar></Navbar>
+    <Sidebar></Sidebar>
+    <div class="content-wrapper">
 
-        <section class="content">
-          <div class="container-fluid">
-            <router-view></router-view>
-          </div>
-        </section>
-        
-      </div>
-      
-      <Footer></Footer>
-      <ControlSidebar></ControlSidebar>
-      
+      <ContentHeader></ContentHeader>
+
+      <section class="content">
+        <div class="container-fluid">
+          <router-view></router-view>
+          <filter-todos></filter-todos>
+        </div>
+      </section>
+
     </div>
+
+    <Footer></Footer>
+    <ControlSidebar></ControlSidebar>
+
+  </div>
   </body>
 </template>
 
@@ -36,11 +37,13 @@ import Navbar from "./dashboard/Navbar.vue";
 import Sidebar from "./dashboard/Sidebar.vue";
 import Footer from "./dashboard/Footer.vue";
 import ControlSidebar from "./dashboard/ControlSidebar.vue"
+import FilterTodos from "@/components/Filter.vue";
 
 
 export default {
   name: "App",
   components: {
+    FilterTodos,
     Preloader,
     ContentHeader,
 
