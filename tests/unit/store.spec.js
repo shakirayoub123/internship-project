@@ -7,7 +7,7 @@ describe('fetchTodos', () => {
         // mock the axios.get method
         axios.get = jest.fn(() => Promise.resolve({data: [{id: 1, title: 'Todo 1'}]}));
 
-        // call the action
+        // calling the action here
         await store.dispatch('fetchTodos');
 
         // assert that axios.get was called with the correct url

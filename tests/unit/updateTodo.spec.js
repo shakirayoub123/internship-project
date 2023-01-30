@@ -104,7 +104,7 @@ describe('updateTodo.vue', () => {
 
             wrapper = sinon.spy()
 
-            axios.get('http://localhost:3000/todolist/').then(wrapper).loading = true
+            axios.get('http://localhost:3000/todolist/')
 
             moxios.wait(() => {
 

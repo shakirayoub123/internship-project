@@ -1,34 +1,9 @@
-// import {mount} from '@vue/test-utils'
-// import {createStore} from "vuex";
-// import homePage from "@/components/HomePage.vue"
-//
-// test('global', async () => {
-//     const store = createStore()
-//     const wrapper = mount(homePage, {
-//         global: {
-//             plugins: [store]
-//         }
-//     })
-//     it('ItemsTodo be mounted', () => {
-//
-//         expect(wrapper.exists()).toBeTruthy()
-//
-//     })
-//
-// })
-
-
 import {mount, shallowMount} from "@vue/test-utils"
 import moxios from 'moxios'
 import Header from "@/components/Header.vue";
 import HomePage from "@/components/HomePage.vue";
 import notFound from "@/components/notFound.vue";
-import axios from "axios";
 import Sidebar from "@/dashboard/Sidebar.vue";
-import {equal} from "assert";
-import {flushPromises} from "@vue/test-utils";
-import store from "@/store";
-import sinon from "sinon";
 import Navbar from "@/dashboard/Navbar.vue";
 
 const {
@@ -125,57 +100,6 @@ describe("HomePage.Vue", () => {
         expect(wrapper.exists()).toBeTruthy()
 
     })
-    test('testing for the getData', async()=> {
-
-        moxios.withMock( ()=> {
-
-            wrapper = sinon.spy()
-
-            axios.get('http://localhost:3000/todolist/').then(wrapper)
-
-            moxios.wait(()=> {
-
-                let request = moxios.requests.mostRecent()
-
-                request.respondWith({
-
-                    status: 200,
-
-                    response: {
-
-                        id: 1,  title: 'title1',
-
-                    }
-
-                })
-
-                    .then(()=> {
-
-                        equal(wrapper.called, true)
-                    })
-
-            })
-
-        })
-
-    })
-    // test('delete `button` functionality',async()=>{
-    //
-    //     const id = 1
-    //
-    //     wrapper.vm.$deleteTodo()
-    //
-    //     expect(wrapper.html()).toContain("content")
-    //
-    //     await wrapper.find(".btn").trigger("click")
-    //
-    //     await flushPromises()
-    //
-    //     await expect(wrapper.exists(id)).toBe(true);
-    //
-    //     expect(wrapper.html()).toContain("")
-    //
-    // })
 
 
 })
